@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const { getTop250Movies, writeToFile, TOP_250 } = require('./fetchData');

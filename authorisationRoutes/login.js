@@ -9,6 +9,8 @@ const { checkUserInfo, checkInformation, correctPosition } = require('../check')
 
 const logIn = express.Router();
 
+const key = process.env.SECRET_KEY;
+
 logIn.post('/', (req, res) => {
     const { body } = req;
 
@@ -28,7 +30,7 @@ logIn.post('/', (req, res) => {
                 if (err) {
                     console.log(err);
                     res.status(500);
-                    res.send('Error comparing passwords error');
+                    res.send('Comparing passwords error');
                 }
             
             if (result) {
@@ -36,7 +38,7 @@ logIn.post('/', (req, res) => {
                     id: searchUser[0].id,
                     email: searchUser[0].email
                   },
-                  'secret',
+                  key,
                   {
                     expiresIn: 300
                   }
@@ -53,7 +55,6 @@ logIn.post('/', (req, res) => {
         }
     }
 });
-
 
 module.exports = {
     logIn

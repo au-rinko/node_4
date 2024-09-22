@@ -2,6 +2,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const { registerUser, usersArray, checkUser } = require('./authorisationRoutes/register');
 
+const key = process.env.SECRET_KEY;
+
 function createMiddleware(req, res, next) {
     if (req.originalUrl.startsWith('/api/auth')){
         next();
@@ -17,7 +19,7 @@ function createMiddleware(req, res, next) {
             }
     
             try{
-                const decodedInfo = jwt.verify(parts[1], 'secret');
+                const decodedInfo = jwt.verify(parts[1], key);
                 console.log(decodedInfo);
     
                 if (!decodedInfo) {
