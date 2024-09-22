@@ -31,19 +31,21 @@ function createJsonFile(data) {
         position: item.top250
       }).filter(item => item.position).sort((a, b) => a.position - b.position);
 
-    fs.writeFile('./movies.json', JSON.stringify(moviesArray), (err) => {
-        if(err) console.log(err);
-    });
+    // fs.writeFile('./movies.json', JSON.stringify(moviesArray), (err) => {
+    //     if(err) console.log(err);
+    // });
+
+    writeToFile(moviesArray, './movies.json');
 }
 
-function writeToFile(data) {
-    fs.writeFile('./movies.json', JSON.stringify(data), (err) => {
-        if(err) console.log(err);
+function writeToFile(data, path) {
+    fs.writeFile(path, JSON.stringify(data), (err) => {
+        if(err) console.log('Error writing to file');
     });
 }
 
 module.exports = {
     getTop250Movies,
     writeToFile,
-    TOP_250,
+    TOP_250
 }

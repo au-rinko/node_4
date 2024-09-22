@@ -21,7 +21,7 @@ deleteMovie.delete('/:id', (req, res) => {
             if (moviesArray[i].position !== subArray[0].position) moviesArray[i].position -= 1;
         }
     
-        writeToFile(moviesArray);
+        writeToFile(moviesArray, './movies.json');
     
         res.status(200);
         res.json('Movie deleted');

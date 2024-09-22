@@ -48,7 +48,7 @@ updateMovie.put('/:id', (req, res) => {
                 moviesArray = moviesArray.map(item => item.id != id ? item : itemForUpdate);
             }
         
-            writeToFile(moviesArray);
+            writeToFile(moviesArray, './movies.json');
         
             res.status(200);
             res.json(itemForUpdate);

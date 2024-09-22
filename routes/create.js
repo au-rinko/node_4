@@ -33,7 +33,7 @@ createMovie.post('/', (req, res) => {
 
         correctPosition(body, newMovie);
 
-        writeToFile(moviesArray);
+        writeToFile(moviesArray, './movies.json');
 
         res.status(201);
         res.json(newMovie);
