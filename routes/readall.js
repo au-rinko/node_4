@@ -16,7 +16,13 @@ try{
 const readAll = express.Router();
 
 readAll.get('/', (req, res) => {
-    res.json(moviesArray);
+    if (req.user) {
+        res.status(200);
+        res.json(moviesArray);
+    } else {
+        res.status(403);
+        res.send('If you want to see movie list you need to log in');
+    }
 });
 
 module.exports = {

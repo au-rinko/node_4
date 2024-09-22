@@ -33,8 +33,6 @@ app.use('/api/films/delete', deleteMovie);
 app.use('/api/auth/register', registerUser);
 app.use('/api/auth/login', logIn);
 
-
-
 app.use((req, res) => {
   res.status(404);
   res.send('Page not found');

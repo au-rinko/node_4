@@ -10,5 +10,17 @@
       "email": "email@gmail.com",
       "password": "$2a$10$MrogovjKHWIdNhrr5Z2DreUOS7vu2pUroLy.YC9ogxf7fLLh2LWa2",
       "super": false
+    },
+    {
+      "id": 3,
+      "email": "user@gmail.com",
+      "password": "$2a$10$hsxVNksYhrbZALyLNeRjNeZKXT44dJvDGCvuZ2VEhfq7We2t3JINi",
+      "super": false
+    },
+    {
+      "id": 4,
+      "email": "user1@gmail.com",
+      "password": "$2a$10$Q32MZ9h/Pa0/rjcUaUefWe65SLEcbnbg4mS7fo9kkrBmTI7Em2it.",
+      "super": false
     }
   ]

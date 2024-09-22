@@ -7,36 +7,41 @@ const { checkInformation, correctPosition } = require('../check');
 const createMovie = express.Router();
 
 createMovie.post('/', (req, res) => {
-    const { body } = req;
-
-    if (!body.name || !body.rating || !body.year || !body.budget || !body.gross || !body.poster || !body.position) {
-        res.status(400);
-        res.send('Not enough information');
-    }
-
-    const message = checkInformation(body);
-
-    if (message) {
-        res.status(400);
-        res.send(message);
-    } else {
-        const newMovie = {
-            id: generateId(),
-            name: body.name,
-            rating: body.rating,
-            year: body.year,
-            budget: body.budget,
-            gross: body.gross,
-            poster: body.poster,
-            position: body.position
+    if (req.user && req.user.super) {
+        const { body } = req;
+    
+        if (!body.name || !body.rating || !body.year || !body.budget || !body.gross || !body.poster || !body.position) {
+            res.status(400);
+            res.send('Not enough information');
         }
-
-        correctPosition(body, newMovie);
-
-        writeToFile(moviesArray, './movies.json');
-
-        res.status(201);
-        res.json(newMovie);
+    
+        const message = checkInformation(body);
+    
+        if (message) {
+            res.status(400);
+            res.send(message);
+        } else {
+            const newMovie = {
+                id: generateId(),
+                name: body.name,
+                rating: body.rating,
+                year: body.year,
+                budget: body.budget,
+                gross: body.gross,
+                poster: body.poster,
+                position: body.position
+            }
+    
+            correctPosition(body, newMovie);
+    
+            writeToFile(moviesArray, './movies.json');
+    
+            res.status(201);
+            res.json(newMovie);
+        }
+    } else {
+        res.status(403);
+        res.send('Only admins can create movies');
     }
 });
 
