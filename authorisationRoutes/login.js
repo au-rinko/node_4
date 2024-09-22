@@ -38,7 +38,7 @@ logIn.post('/', (req, res) => {
                   },
                   'secret',
                   {
-                    expiresIn: 300
+                    expiresIn: '3h'
                   }
                 );
                 res.status(200);

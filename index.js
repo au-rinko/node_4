@@ -8,6 +8,8 @@ const { updateMovie } = require('./routes/update');
 const { deleteMovie } = require('./routes/delete');
 const { registerUser, usersArray, checkUser } = require('./authorisationRoutes/register');
 const { logIn } = require('./authorisationRoutes/login');
+const { request } = require('http');
+const { createMiddleware } = require('./middlewareFunction');
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.get('/', (req, res) => {
   res.send('Hi there!');
 });
 
+app.use(createMiddleware);
+
 app.use('/api/films/readall', readAll);
 app.use('/api/films/read', read);
 app.use('/api/films/create', createMovie);
@@ -28,6 +32,8 @@ app.use('/api/films/update', updateMovie);
 app.use('/api/films/delete', deleteMovie);
 app.use('/api/auth/register', registerUser);
 app.use('/api/auth/login', logIn);
+
+
 
 app.use((req, res) => {
   res.status(404);
