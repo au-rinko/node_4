@@ -6,7 +6,8 @@ const { read } = require('./routes/read');
 const { createMovie } = require('./routes/create');
 const { updateMovie } = require('./routes/update');
 const { deleteMovie } = require('./routes/delete');
-const { registerUser } = require('./authorisationRoutes/register');
+const { registerUser, usersArray, checkUser } = require('./authorisationRoutes/register');
+const { logIn } = require('./authorisationRoutes/login');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/films/create', createMovie);
 app.use('/api/films/update', updateMovie);
 app.use('/api/films/delete', deleteMovie);
 app.use('/api/auth/register', registerUser);
+app.use('/api/auth/login', logIn);
 
 app.use((req, res) => {
   res.status(404);

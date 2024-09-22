@@ -2,6 +2,22 @@ const express = require('express');
 const fs = require('fs');
 const { moviesArray, readAll } = require('./routes/readall');
 
+function checkUserInfo(body) {
+    let message = null;
+
+    if (!body.email) message = 'Email is required';
+
+    if (!body.password) message = 'Password id required';
+
+    if (typeof body.email !== 'string' || !body.email.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)) {
+        message = 'Email should be in such format: exapmle@domain.com';
+    }
+
+    if (typeof body.password !== 'string') message = 'Password should be a string';
+
+    return message;
+}
+
 function checkInformation (body, id) {
     let message = null;
 
@@ -65,6 +81,7 @@ function correctPosition(body, newMovie) {
 }
 
 module.exports = {
+    checkUserInfo,
     checkInformation,
     correctPosition
 }
